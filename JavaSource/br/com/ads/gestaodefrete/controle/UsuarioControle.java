@@ -1,5 +1,11 @@
 package br.com.ads.gestaodefrete.controle;
 
-public interface UsuarioControle {
+import java.io.Closeable;
+
+import br.com.ads.gestaodefrete.modelo.Usuario;
+
+public interface UsuarioControle extends Closeable {
+	
+	public Usuario efetuarLogin(Usuario usuario);
 
 }

@@ -63,7 +63,16 @@
                         <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-user fa-fw"></i> Perfil</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="index.html"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
+                        <li>
+                        	<h:form role="form">
+	                        	
+	                        	
+	                        	<h:commandLink action="#{usuarioBean.sessionInvalidate()}" >
+	                        		<i class="fa fa-sign-out fa-fw"></i>
+	                        		Sair
+	                        	</h:commandLink>
+	                        	
+	                        </h:form>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
