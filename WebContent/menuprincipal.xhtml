@@ -148,32 +148,70 @@
        <div class="modal-content">
            <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-               <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+               <h4 class="modal-title" id="myModalLabel">Registro da Empresa</h4>
            </div>
+           <h:form role="form">
            <div class="modal-body">
-               <h:form role="form">
+               
                
                		<fieldset>
                		
                			<div class="row">
-               				<div class="form-group col-md-6">
-               					<h:outputLabel value="Nome" for="nome"/>
-               					<h:inputText styleClass="form-control" id="nome"/>
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Taxa de Administração" />
+               					<h:inputText styleClass="form-control" value="#{empresaBean.empresa.taxaDeAdministracao}"/>
                				</div>
-               				<div class="form-group col-md-6">
-               					<h:outputLabel value="Sobrenome" />
-               					<h:inputText styleClass="form-control" />
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Seguro por Viagem" />
+               					<h:inputText styleClass="form-control" value="#{empresaBean.empresa.seguroPorViagem}"/>
+               				</div>
+               			
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Nome da Empresa" for="nome"/>
+               					<h:inputText styleClass="form-control" id="nome" value="#{empresaBean.empresa.nomeEmpresa}"/>
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Endereço" />
+               					<h:inputText styleClass="form-control" value="#{empresaBean.empresa.endereco}"/>
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Nome da Cidade" />
+               					<h:inputText styleClass="form-control" value="#{empresaBean.empresa.nomeCidade}"/>
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="CEP" />
+               					<h:inputText styleClass="form-control" value="#{empresaBean.empresa.cep}"/>
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Telefone1" />
+               					<h:inputText styleClass="form-control" value="#{empresaBean.empresa.telefone1}"/>
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Telefone2" />
+               					<h:inputText styleClass="form-control" value="#{empresaBean.empresa.telefone2}"/>
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="E-mail" />
+               					<h:inputText styleClass="form-control" value="#{empresaBean.empresa.email}"/>
                				</div>
                			</div>
                		
                		</fieldset>
                
-               </h:form>
+               
            </div>
            <div class="modal-footer">
-               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-               <button type="button" class="btn btn-primary">Save changes</button>
+               <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
+               <h:commandButton action="#{empresaBean.salvar()}" styleClass="btn btn-primary" value="Salvar Empresa"/>
            </div>
+           </h:form>
        </div>
        <!-- /.modal-content -->
    </div>

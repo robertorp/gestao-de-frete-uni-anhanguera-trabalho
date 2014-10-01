@@ -20,13 +20,11 @@ public class Permissao implements PhaseListener {
 	public void afterPhase(PhaseEvent event) {
 
 		FacesContext facesContext = event.getFacesContext();
-		     String currentPage = facesContext.getViewRoot().getViewId();
 		 
-		     boolean isLoginPage = (currentPage.lastIndexOf("index.xhtml") > -1);
 		     HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 		     UsuarioBean usuarioBean = (UsuarioBean) session.getAttribute("usuarioBean");
 		     
-		     if (usuarioBean == null || !isLoginPage && usuarioBean.getUsuario().getIdUsuario() == null) {
+		     if (usuarioBean == null) {
 		       NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
 		       nh.handleNavigation(facesContext, null, "index");
 		     }
