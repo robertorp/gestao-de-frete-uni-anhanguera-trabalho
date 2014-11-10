@@ -20,8 +20,10 @@ public class EmpresaBean {
 	@PostConstruct
 	public void init() {
 		this.empresaControle = FabricaControle.getEmpresaControle();
+		
 		this.empresa = this.empresaControle.buscar();
 		this.close();
+		
 	}
 
 	public Empresa getEmpresa() {
@@ -38,7 +40,9 @@ public class EmpresaBean {
 	}
 	
 	public void salvar() {
+		// Necessitou de criar outra instância, pois ele executa o init toda vez.
 		this.empresaControle = FabricaControle.getEmpresaControle();
+		
 		this.empresaControle.salvarOuAlterar(empresa);
 		this.close();
 	}

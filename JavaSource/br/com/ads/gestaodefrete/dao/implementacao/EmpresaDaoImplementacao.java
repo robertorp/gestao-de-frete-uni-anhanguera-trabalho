@@ -59,6 +59,8 @@ public class EmpresaDaoImplementacao implements EmpresaDao {
 			empresa = null;
 		}
 		
+		this.entityManager.getTransaction().commit();
+		
 		return empresa;
 	}
 

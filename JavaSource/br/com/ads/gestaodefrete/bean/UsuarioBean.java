@@ -1,6 +1,5 @@
 package br.com.ads.gestaodefrete.bean;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -15,16 +14,12 @@ import br.com.ads.gestaodefrete.modelo.Usuario;
 public class UsuarioBean {
 	
 	private Usuario usuario;
-	private UsuarioControle usuarioControle;
-	
-	@PostConstruct
-	public void init() {
-		this.usuarioControle = FabricaControle.getUsuarioControle();
-	}
 	
 	public String entrar() {
 		
-		if(this.usuarioControle.efetuarLogin(this.getUsuario()) != null)
+		UsuarioControle usuarioControle = FabricaControle.getUsuarioControle();
+		
+		if(usuarioControle.efetuarLogin(this.getUsuario()) != null)
 			return "menuprincipal";
 		else
 			return "";

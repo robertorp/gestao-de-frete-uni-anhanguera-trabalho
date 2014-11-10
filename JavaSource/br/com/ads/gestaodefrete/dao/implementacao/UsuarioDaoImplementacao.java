@@ -13,7 +13,7 @@ public class UsuarioDaoImplementacao implements UsuarioDao {
 	
 	
 	public UsuarioDaoImplementacao() {
-		
+		this.instanciaEM();
 	}
 	
 	private void instanciaEM() {
@@ -32,8 +32,6 @@ public class UsuarioDaoImplementacao implements UsuarioDao {
 	
 	@Override
 	public Usuario efetuarLogin(Usuario usuario) {
-		
-		this.instanciaEM();
 		
 		this.entityManager.getTransaction().begin();
 		
