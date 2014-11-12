@@ -113,7 +113,9 @@
 		
 
             <div id="page-wrapper">
-            	Cadastro de Tipo Veiculo
+            	<div class="">
+					<a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModal" role="button">Novo</a>
+				</div>
             </div>
             <!-- jQuery Version 1.11.0 -->
     <script src="js/jquery-1.11.0.js"></script>
@@ -131,6 +133,43 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
         
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+               <h4 class="modal-title" id="myModalLabel">Cadastro de Tipo de Veículo</h4>
+           </div>
+           <h:form role="form">
+           <div class="modal-body">
+               
+               
+               		<fieldset>
+               		
+               			<div class="row">
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Descrição Tipo Veículo" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+         			</div>
+               		
+               		</fieldset>
+               
+               
+           </div>
+           <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
+               <h:commandButton styleClass="btn btn-primary" value="Salvar"/>
+<!--                <h:commandButton action="#{empresaBean.salvar()}" styleClass="btn btn-primary" value="Salvar Empresa"/> -->
+           </div>
+           </h:form>
+       </div>
+       <!-- /.modal-content -->
+   </div>
+   <!-- /.modal-dialog -->
 </div>
 
 </body>

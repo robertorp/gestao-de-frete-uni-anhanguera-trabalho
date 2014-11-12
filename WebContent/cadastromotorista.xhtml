@@ -113,7 +113,9 @@
 		
 
             <div id="page-wrapper">
-				Cadastro de Motorista
+				<div class="">
+					<a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModal" role="button">Novo</a>
+				</div>
             </div>
             <!-- jQuery Version 1.11.0 -->
     <script src="js/jquery-1.11.0.js"></script>
@@ -132,6 +134,94 @@
     <script src="js/sb-admin-2.js"></script>
         
 </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+               <h4 class="modal-title" id="myModalLabel">Cadastro de Motorista</h4>
+           </div>
+           <h:form role="form">
+           <div class="modal-body">
+               
+               
+               		<fieldset>
+               		
+               			<div class="row">
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Nome Motorista" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Apelido" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               			
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Endereço" for="nome"/><br/>
+               					<h:inputText styleClass="form-control" id="nome" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Bairro" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Estado (UF)" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Cidade" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Telefone Fixo" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Celular 1" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Celular 2" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="CPF" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="RG" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+         			</div>
+               		
+               		</fieldset>
+               
+               
+           </div>
+           <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
+               <h:commandButton styleClass="btn btn-primary" value="Salvar"/>
+<!--                <h:commandButton action="#{empresaBean.salvar()}" styleClass="btn btn-primary" value="Salvar Empresa"/> -->
+           </div>
+           </h:form>
+       </div>
+       <!-- /.modal-content -->
+   </div>
+   <!-- /.modal-dialog -->
+</div>
+
 
 </body>
   

@@ -60,7 +60,7 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a>
+                        <li><a href="#" data-toggle="modal" data-target="#perfil"><i class="fa fa-user fa-fw"></i> Perfil</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="index.xhtml"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
@@ -115,10 +115,8 @@
            <div id="page-wrapper">
             	
 				<div class="">
-					<a href="#" class="btn btn-lg btn-success" role="button">Novo</a>
+					<a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModal" role="button">Novo</a>
 				</div>
-            	
-            	<h:dataTable styleClass="table table-striped table-bordered table-hover"></h:dataTable>
             
             </div>
             <!-- jQuery Version 1.11.0 -->
@@ -137,6 +135,180 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
         
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+               <h4 class="modal-title" id="myModalLabel">Cadastro de Clientes</h4>
+           </div>
+           <h:form role="form">
+           <div class="modal-body">
+               
+               
+               		<fieldset>
+               		
+               			<div class="row">
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Razão Social/Nome" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Nome Fantasia/Apelido" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               			
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Tipo Pessoa" for="nome"/><br/>
+               					<h:selectOneListbox styleClass="form-control">
+               						<f:selectItem itemLabel="Fisica"/>
+               					</h:selectOneListbox>
+<!--                					<h:inputText styleClass="form-control" id="nome" /> -->
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="CNPJ" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="CPF" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Telefone1" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Telefone2" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Lavada" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Estado" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Cidade" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Endereço" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Bairro" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Número" />
+               					<h:inputText styleClass="form-control" />
+               				</div>
+               			</div>
+               		
+               		</fieldset>
+               
+               
+           </div>
+           <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
+               <h:commandButton styleClass="btn btn-primary" value="Salvar"/>
+<!--                <h:commandButton action="#{empresaBean.salvar()}" styleClass="btn btn-primary" value="Salvar Empresa"/> -->
+           </div>
+           </h:form>
+       </div>
+       <!-- /.modal-content -->
+   </div>
+   <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="perfil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+               <h4 class="modal-title" id="myModalLabel">Registro da Empresa</h4>
+           </div>
+           <h:form role="form">
+           <div class="modal-body">
+               
+               
+               		<fieldset>
+               		
+               			<div class="row">
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Taxa de Administração" />
+               					<h:inputText styleClass="form-control" value="#{empresaBean.empresa.taxaDeAdministracao}"/>
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Seguro por Viagem" />
+               					<h:inputText styleClass="form-control" value="#{empresaBean.empresa.seguroPorViagem}"/>
+               				</div>
+               			
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Nome da Empresa" for="nome"/>
+               					<h:inputText styleClass="form-control" id="nome" value="#{empresaBean.empresa.nomeEmpresa}"/>
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Endereço" />
+               					<h:inputText styleClass="form-control" value="#{empresaBean.empresa.endereco}"/>
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Nome da Cidade" />
+               					<h:inputText styleClass="form-control" value="#{empresaBean.empresa.nomeCidade}"/>
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="CEP" />
+               					<h:inputText styleClass="form-control" value="#{empresaBean.empresa.cep}"/>
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Telefone1" />
+               					<h:inputText styleClass="form-control" value="#{empresaBean.empresa.telefone1}"/>
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="Telefone2" />
+               					<h:inputText styleClass="form-control" value="#{empresaBean.empresa.telefone2}"/>
+               				</div>
+               				
+               				<div class="form-group col-md-12">
+               					<h:outputLabel value="E-mail" />
+               					<h:inputText styleClass="form-control" value="#{empresaBean.empresa.email}"/>
+               				</div>
+               			</div>
+               		
+               		</fieldset>
+               
+               
+           </div>
+           <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
+               <h:commandButton action="#{empresaBean.salvar()}" styleClass="btn btn-primary" value="Salvar Empresa"/>
+           </div>
+           </h:form>
+       </div>
+       <!-- /.modal-content -->
+   </div>
+   <!-- /.modal-dialog -->
 </div>
 
 </body>
