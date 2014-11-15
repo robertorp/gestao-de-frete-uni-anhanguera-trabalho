@@ -33,8 +33,6 @@ public class UsuarioDaoImplementacao implements UsuarioDao {
 	@Override
 	public Usuario efetuarLogin(Usuario usuario) {
 		
-		this.entityManager.getTransaction().begin();
-		
 		// é parecido com select mas não é ! estou selecionando um objeto e não uma tabela!
 		String jpql = "from Usuario u where u.login = :login and u.senha = :senha";
 		
@@ -51,9 +49,6 @@ public class UsuarioDaoImplementacao implements UsuarioDao {
 		} catch (NoResultException e) {
 			usuarioVolta = null;
 		}
-		
-		
-		this.entityManager.getTransaction().commit();
 		
 		this.close();
 		

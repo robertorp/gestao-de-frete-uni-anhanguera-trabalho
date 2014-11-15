@@ -44,8 +44,6 @@ public class EmpresaDaoImplementacao implements EmpresaDao {
 
 	@Override
 	public Empresa buscar() {
-
-		this.entityManager.getTransaction().begin();
 		
 		String jpql = "from Empresa";
 		
@@ -59,15 +57,12 @@ public class EmpresaDaoImplementacao implements EmpresaDao {
 			empresa = null;
 		}
 		
-		this.entityManager.getTransaction().commit();
-		
 		return empresa;
 	}
 
 	@Override
 	public void close() {
 		this.entityManager.close();
-		
 	}
 
 }
