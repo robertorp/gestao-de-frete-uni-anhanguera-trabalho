@@ -16,19 +16,50 @@ public class CategoriaVeiculoBean {
 	
 	private CategoriaVeiculoControle categoriaVeiculoControle;
 	private CategoriaVeiculo categoriaVeiculo;
+	private List<CategoriaVeiculo> categoriaVeiculos = null;
+	private String acaoRegistro;
 	
-	public void salvar() {
-		
-		
+	public void novoRegistro() {
+		this.categoriaVeiculo = new CategoriaVeiculo();
+		this.acaoRegistro = "novo";
+	}
+	
+	public void alterar() {
+		this.acaoRegistro = "editar";
+	}
+	
+	public String salvar() {
 		try {
 			this.categoriaVeiculoControle = FabricaControle.getCategoriaVeiculoControle();
 			this.categoriaVeiculoControle.salvarOuAlterar(this.categoriaVeiculo);
 			this.categoriaVeiculoControle.close();
 			
-			this.categoriaVeiculo = new CategoriaVeiculo();
+			this.categoriaVeiculos = null;
+			return "";
 		} catch (IOException e) {
 			e.printStackTrace();
-		} 
+		}
+		return "";
+	}
+	
+	public String deletar() {
+		try {
+			this.categoriaVeiculoControle = FabricaControle.getCategoriaVeiculoControle();
+			
+			// aqui ele executa um update (merge do hibernate) para colocar o objeto dentro da sessão do hibernate
+			this.categoriaVeiculo = this.categoriaVeiculoControle.salvarOuAlterar(this.categoriaVeiculo);
+			
+			// depois de colocar o objeto na sessão do hibernate você pode executar o deletar
+			this.categoriaVeiculoControle.deletar(this.categoriaVeiculo);
+			
+			this.categoriaVeiculoControle.close();
+			
+			this.categoriaVeiculos = null;
+			return "";
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "";
 	}
 
 	public CategoriaVeiculo getCategoriaVeiculo() {
@@ -41,8 +72,6 @@ public class CategoriaVeiculoBean {
 	public void setCategoriaVeiculo(CategoriaVeiculo categoriaVeiculo) {
 		this.categoriaVeiculo = categoriaVeiculo;
 	}
-	
-	private List<CategoriaVeiculo> categoriaVeiculos = null;
 	
 	public List<CategoriaVeiculo> listar() {
 		
@@ -57,6 +86,14 @@ public class CategoriaVeiculoBean {
 			}
 		}
 		return this.categoriaVeiculos;
+	}
+
+	public String getAcaoRegistro() {
+		return acaoRegistro;
+	}
+
+	public void setAcaoRegistro(String abrirEdicao) {
+		this.acaoRegistro = abrirEdicao;
 	}
 
 }

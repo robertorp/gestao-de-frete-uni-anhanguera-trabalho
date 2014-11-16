@@ -10,5 +10,7 @@ public interface CategoriaVeiculoControle extends Closeable {
 	public CategoriaVeiculo salvarOuAlterar(CategoriaVeiculo categoriaVeiculo);
 	
 	public List<CategoriaVeiculo> listar();
+	
+	public void deletar(CategoriaVeiculo categoriaVeiculo);
 
 }

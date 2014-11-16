@@ -59,4 +59,15 @@ public class CategoriaVeiculoDaoImplementacao implements CategoriaVeiculoDao {
 		return query.getResultList();
 	}
 
+	@Override
+	public void deletar(CategoriaVeiculo categoriaVeiculo) {
+
+		this.entityManager.getTransaction().begin();
+		
+		this.entityManager.remove(categoriaVeiculo);
+		
+		this.entityManager.getTransaction().commit();
+		
+	}
+
 }

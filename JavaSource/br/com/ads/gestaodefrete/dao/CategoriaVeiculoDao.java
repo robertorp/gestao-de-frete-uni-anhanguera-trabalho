@@ -12,5 +12,7 @@ public interface CategoriaVeiculoDao extends Closeable {
 	public CategoriaVeiculo alterar(CategoriaVeiculo categoriaVeiculo);
 	
 	public List<CategoriaVeiculo> listar();
+	
+	public void deletar(CategoriaVeiculo categoriaVeiculo);
 
 }

@@ -51,4 +51,11 @@ public class CategoriaVeiculoControleImplementacao implements CategoriaVeiculoCo
 		return this.categoriaVeiculoDao.listar();
 	}
 
+	@Override
+	public void deletar(CategoriaVeiculo categoriaVeiculo) {
+		
+		this.categoriaVeiculoDao.deletar(categoriaVeiculo);
+		
+	}
+
 }

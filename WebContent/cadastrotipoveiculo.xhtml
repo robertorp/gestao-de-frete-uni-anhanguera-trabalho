@@ -114,14 +114,34 @@
 
             <div id="page-wrapper">
             	<div class="">
-					<a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModal" role="button">Novo</a><br/>
-					
+            		<h:form>
+<!-- 					<a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModal" role="button">Novo</a><br/> -->
+						<h:commandButton class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModal" role="button" value="Novo" action="#{categoriaVeiculoBean.novoRegistro()}"/>
+					</h:form>
 					
 					<h:dataTable value="#{categoriaVeiculoBean.listar()}" var="categoriaVeiculo" rules="rows" cellpadding="5" styleClass="table table-striped table-bordered table-hover"
 					id="dataTableCategoriaVeiculo">
+					
+						<h:column>
+							<f:facet name="header">Código</f:facet>
+							#{categoriaVeiculo.id}
+						</h:column>
+						
 						<h:column>
 							<f:facet name="header">Descrição</f:facet>
 							#{categoriaVeiculo.descricao}
+						</h:column>
+							
+						<h:column>
+							<f:facet name="header">Ações</f:facet>
+							<h:form>
+								<h:commandButton value="Alterar" action="#{categoriaVeiculoBean.alterar}">
+                                    <f:setPropertyActionListener value="#{categoriaVeiculo}" target="#{categoriaVeiculoBean.categoriaVeiculo}" />
+								</h:commandButton>
+								<h:commandButton value="Excluir" action="#{categoriaVeiculoBean.deletar()}">
+                                    <f:setPropertyActionListener value="#{categoriaVeiculo}" target="#{categoriaVeiculoBean.categoriaVeiculo}" />
+								</h:commandButton>
+							</h:form>
 						</h:column>
 						
 					</h:dataTable>
@@ -146,37 +166,54 @@
     <script src="js/sb-admin-2.js"></script>
     
     <script type="text/javascript">
-    	$('#dataTableCategoriaVeiculo').dataTable(
-			{
-				    			
-			    language: {
-			        processing:     "Processando aguarde...",
-			        search:         "Pesquisar",
-			        lengthMenu:    "Pagina _MENU_ ",
-			        info:           "Exibindo _START_ de _END_ ate _TOTAL_ ",
-			        infoEmpty:      "",
-			        infoFiltered:   "(Total de registros  _MAX_)",
-			        infoPostFix:    "",
-			        loadingRecords: "Carregando registros...",
-			        zeroRecords:    "Registro não encontrado.",
-			        emptyTable:     "Não a registros.",
-			        paginate: {
-			            first:      "Primeiro",
-			            previous:   "Anterior",
-			            next:       "Proximo",
-			            last:       "Ultimo"
-			        },
-			        aria: {
-			            sortAscending:  ": activer pour trier la colonne par ordre croissant",
-			            sortDescending: ": activer pour trier la colonne par ordre décroissant"
-			        }
-			    }
-			
-			}
-    	);
+
+		$(function(){ 
+			var table = $('#dataTableCategoriaVeiculo').dataTable(
+					{
+						    			
+					    language: {
+					        processing:     "Processando aguarde...",
+					        search:         "Pesquisar",
+					        lengthMenu:    "Pagina _MENU_ ",
+					        info:           "Exibindo _START_ de _END_ ate _TOTAL_ ",
+					        infoEmpty:      "",
+					        infoFiltered:   "(Total de registros  _MAX_)",
+					        infoPostFix:    "",
+					        loadingRecords: "Carregando registros...",
+					        zeroRecords:    "Registro não encontrado.",
+					        emptyTable:     "Não a registros.",
+					        paginate: {
+					            first:      "Primeiro",
+					            previous:   "Anterior",
+					            next:       "Proximo",
+					            last:       "Ultimo"
+					        },
+					        aria: {
+					            sortAscending:  ": activer pour trier la colonne par ordre croissant",
+					            sortDescending: ": activer pour trier la colonne par ordre décroissant"
+					        }
+					    }
+					
+					}
+		    	);
+
+
+				
+				// Variável que recebe o status si é uma edição ou um novo registro
+		    	var abrirEdicao = $("#acaoRegistro").val();
+
+				// se for edição então abre modal com dados preenchidos
+		    	if(abrirEdicao == 'editar' || abrirEdicao == 'novo') {
+					$("#myModal").modal("show");
+			   	}
+		});
+    
+    	    	
     </script>
-        
+     
 </div>
+
+<h:inputHidden value="#{categoriaVeiculoBean.acaoRegistro}" id="acaoRegistro"/>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<h:form id="cadastro" role="form">
@@ -193,6 +230,10 @@
                		<fieldset>
                		
                			<div class="row">
+               			
+               				<div class="form-group col-md-12">
+               					<h:inputHidden value="#{categoriaVeiculoBean.categoriaVeiculo.id}"/>
+               				</div>
                				<div class="form-group col-md-12">
                					<h:outputLabel value="Descrição Tipo Veículo" />
                					<h:inputText styleClass="form-control" value="#{categoriaVeiculoBean.categoriaVeiculo.descricao}"/>
