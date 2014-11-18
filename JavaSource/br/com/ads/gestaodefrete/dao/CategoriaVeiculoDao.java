@@ -14,5 +14,7 @@ public interface CategoriaVeiculoDao extends Closeable {
 	public List<CategoriaVeiculo> listar();
 	
 	public void deletar(CategoriaVeiculo categoriaVeiculo);
+	
+	public CategoriaVeiculo buscar(Integer idCategoriaVeiculo);
 
 }

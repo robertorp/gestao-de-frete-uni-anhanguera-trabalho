@@ -64,9 +64,25 @@ public class CategoriaVeiculoDaoImplementacao implements CategoriaVeiculoDao {
 
 		this.entityManager.getTransaction().begin();
 		
+		categoriaVeiculo = this.entityManager.merge(categoriaVeiculo);
 		this.entityManager.remove(categoriaVeiculo);
 		
 		this.entityManager.getTransaction().commit();
+		
+	}
+
+	@Override
+	public CategoriaVeiculo buscar(Integer idCategoriaVeiculo) {
+		
+		CategoriaVeiculo categoriaVeiculo;
+		
+		this.entityManager.getTransaction().begin();
+		
+		categoriaVeiculo = this.entityManager.find(CategoriaVeiculo.class, idCategoriaVeiculo);
+		
+		this.entityManager.getTransaction().commit();
+		
+		return categoriaVeiculo;
 		
 	}
 

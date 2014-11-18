@@ -58,4 +58,10 @@ public class CategoriaVeiculoControleImplementacao implements CategoriaVeiculoCo
 		
 	}
 
+	@Override
+	public CategoriaVeiculo buscar(Integer idCategoriaVeiculo) {
+
+		return this.categoriaVeiculoDao.buscar(idCategoriaVeiculo);
+	}
+
 }

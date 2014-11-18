@@ -114,7 +114,9 @@
 
             <div id="page-wrapper">
 				<div class="">
-					<a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModal" role="button">Novo</a>
+					<h:form>
+						<h:commandButton class="btn btn-lg btn-success" role="button" value="Novo" action="#{veiculoBean.novoRegistro()}"/>
+					</h:form>
 				</div>
             </div>
             <!-- jQuery Version 1.11.0 -->
@@ -132,17 +134,63 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
-        
+    
+        <script type="text/javascript">
+
+		$(function(){ 
+			var table = $('#dataTableCategoriaVeiculo').dataTable(
+					{
+						    			
+					    language: {
+					        processing:     "Processando aguarde...",
+					        search:         "Pesquisar",
+					        lengthMenu:    "Pagina _MENU_ ",
+					        info:           "Exibindo _START_ de _END_ ate _TOTAL_ ",
+					        infoEmpty:      "",
+					        infoFiltered:   "(Total de registros  _MAX_)",
+					        infoPostFix:    "",
+					        loadingRecords: "Carregando registros...",
+					        zeroRecords:    "Registro não encontrado.",
+					        emptyTable:     "Não a registros.",
+					        paginate: {
+					            first:      "Primeiro",
+					            previous:   "Anterior",
+					            next:       "Proximo",
+					            last:       "Ultimo"
+					        },
+					        aria: {
+					            sortAscending:  ": activer pour trier la colonne par ordre croissant",
+					            sortDescending: ": activer pour trier la colonne par ordre décroissant"
+					        }
+					    }
+					
+					}
+		    	);
+
+
+				
+				// Variável que recebe o status si é uma edição ou um novo registro
+		    	var abrirEdicao = $("#acaoRegistro").val();
+
+				// se for edição então abre modal com dados preenchidos
+		    	if(abrirEdicao == 'editar' || abrirEdicao == 'novo') {
+					$("#myModalCadastroVeiculo").modal("show");
+			   	}
+		});	    	
+    </script>
 </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<h:inputHidden value="#{veiculoBean.acaoRegistro}" id="acaoRegistro"/>
+
+<div class="modal fade" id="myModalCadastroVeiculo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<h:form role="form">
    <div class="modal-dialog">
        <div class="modal-content">
            <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                <h4 class="modal-title" id="myModalLabel">Cadastro de Veículo</h4>
            </div>
-           <h:form role="form">
+           
            <div class="modal-body">
                
                
@@ -150,28 +198,36 @@
                		
                			<div class="row">
                				<div class="form-group col-md-12">
+               					<h:inputHidden value="#{veiculoBean.veiculo.id}"/>
+               				</div>
+               			
+               				<div class="form-group col-md-12">
                					<h:outputLabel value="Placa" />
-               					<h:inputText styleClass="form-control" />
+               					<h:inputText styleClass="form-control" value="#{veiculoBean.veiculo.placa}"/>
                				</div>
                				
                				<div class="form-group col-md-12">
                					<h:outputLabel value="Modelo" />
-               					<h:inputText styleClass="form-control" />
+               					<h:inputText styleClass="form-control" value="#{veiculoBean.veiculo.modelo}"/>
                				</div>
 							
 							<div class="form-group col-md-12">
                					<h:outputLabel value="Tipo Veiculo" />
-               					<h:inputText styleClass="form-control" />
+               					<h:selectOneMenu styleClass="form-control" value="#{veiculoBean.veiculo.categoriaVeiculo}">
+               						<f:selectItems value="#{veiculoBean.selectItemsCategoriaVeiculos}"/>
+               					</h:selectOneMenu> 
+               					
                				</div>
-							               			
+					
+												               			
                				<div class="form-group col-md-12">
                					<h:outputLabel value="Chassi" for="nome"/><br/>
-               					<h:inputText styleClass="form-control" id="nome" />
+               					<h:inputText styleClass="form-control" id="nome" value="#{veiculoBean.veiculo.chassi}"/>
                				</div>
                				
                				<div class="form-group col-md-12">
                					<h:outputLabel value="Observação" />
-               					<h:inputText styleClass="form-control" />
+               					<h:inputText styleClass="form-control" value="#{veiculoBean.veiculo.observacao}"/>
                				</div>
                				
          			</div>
@@ -182,13 +238,14 @@
            </div>
            <div class="modal-footer">
                <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
-               <h:commandButton styleClass="btn btn-primary" value="Salvar"/>
-<!--                <h:commandButton action="#{empresaBean.salvar()}" styleClass="btn btn-primary" value="Salvar Empresa"/> -->
+               <h:commandButton action="#{veiculoBean.salvar()}" styleClass="btn btn-primary" value="Salvar">
+               </h:commandButton>
            </div>
-           </h:form>
+           
        </div>
        <!-- /.modal-content -->
    </div>
+   </h:form>
    <!-- /.modal-dialog -->
 </div>
 
